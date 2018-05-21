@@ -1,0 +1,16 @@
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe.config
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.pdb
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csprojResolveAssemblyReference.cache
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR_BACK_PROPAGATION.Properties.Resources.resources
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csproj.GenerateResource.Cache
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.exe
+C:\Users\Henock\Documents\Visual Studio 2015\Projects\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.pdb
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe.config
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.exe
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.pdb
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.pdb
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csprojResolveAssemblyReference.cache
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR_BACK_PROPAGATION.Properties.Resources.resources
+E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csproj.GenerateResource.Cache
