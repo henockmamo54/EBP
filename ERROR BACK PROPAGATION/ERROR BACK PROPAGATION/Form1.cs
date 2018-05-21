@@ -21,6 +21,7 @@ namespace ERROR_BACK_PROPAGATION
         double[] deltavalues;
         int totalNodeCount = 0;
         double learningRate = 0.01;
+        List<double[]> data;
         public Form1()
         {
             InitializeComponent();
@@ -49,11 +50,11 @@ namespace ERROR_BACK_PROPAGATION
             for (int i = 0; i < weightsCount; i++)
             {
                 double rand = randomNumGenerator.Next(-10, 10);
-                weightValues[i] = rand / 10;
-                //weightValues[i] = 1;
+                //weightValues[i] = rand / 10;
+                weightValues[i] = 1;
             }
 
-            var data=readFile();
+            data=readFile().Take(5).ToList();
 
             for (int i = 0; i < data.Count; i++) {
                 double output = calculateTheOutput(data[i][0], data[i][1]);
@@ -122,5 +123,15 @@ namespace ERROR_BACK_PROPAGATION
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            for (int i = 0; i < data.Count; i++) {
+                double output = calculateTheOutput(data[i][0], data[i][1]);
+                if (data[i][2] == (output > 0.5 ? 1 : 0)) count++;
+            }
+
+            System.Diagnostics.Debug.Print("Count =>" + count);
+        }
     }
 }

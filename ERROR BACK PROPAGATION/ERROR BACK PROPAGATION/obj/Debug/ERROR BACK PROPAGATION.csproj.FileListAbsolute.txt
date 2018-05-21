@@ -14,3 +14,12 @@ E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bi
 E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csprojResolveAssemblyReference.cache
 E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR_BACK_PROPAGATION.Properties.Resources.resources
 E:\Course\intelligent computing\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csproj.GenerateResource.Cache
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe.config
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.exe
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.pdb
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.exe
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\bin\Debug\ERROR BACK PROPAGATION.pdb
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csprojResolveAssemblyReference.cache
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR_BACK_PROPAGATION.Properties.Resources.resources
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR BACK PROPAGATION.csproj.GenerateResource.Cache
+E:\Course\intelligent computing\epb\ERROR BACK PROPAGATION\ERROR BACK PROPAGATION\obj\Debug\ERROR_BACK_PROPAGATION.Form1.resources
