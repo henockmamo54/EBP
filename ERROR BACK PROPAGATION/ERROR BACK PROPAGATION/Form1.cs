@@ -22,6 +22,7 @@ namespace ERROR_BACK_PROPAGATION
         int totalNodeCount = 0;
         double learningRate = 0.01;
         List<double[]> data;
+        bool withbias = true;
         public Form1()
         {
             InitializeComponent();
@@ -50,8 +51,8 @@ namespace ERROR_BACK_PROPAGATION
             for (int i = 0; i < weightsCount; i++)
             {
                 double rand = randomNumGenerator.Next(-10, 10);
-                //weightValues[i] = rand / 10;
-                weightValues[i] = 1;
+                weightValues[i] = rand / 10;
+                //weightValues[i] = 1;
             }
 
             data=readFile().Take(5).ToList();
@@ -85,14 +86,14 @@ namespace ERROR_BACK_PROPAGATION
         public double calculateTheOutput(double x1, double x2)
         {
             // first layer
-            svalues[3] = x1 * weightValues[0] + x2 * weightValues[1];
-            svalues[4]= x1 * weightValues[2] + x2 * weightValues[3];
+            svalues[3] = x1 * weightValues[0] + x2 * weightValues[1] + (withbias?1:0);
+            svalues[4]= x1 * weightValues[2] + x2 * weightValues[3] + (withbias ? 1 : 0);
 
             uvalues[3] = calculateSigmoid(svalues[3]);
             uvalues[4] = calculateSigmoid(svalues[4]);
 
             // second layer
-            svalues[5] = uvalues[3] * weightValues[4] + uvalues[4] * weightValues[5];
+            svalues[5] = uvalues[3] * weightValues[4] + uvalues[4] * weightValues[5] + (withbias ? 1 : 0);
 
             uvalues[5] = calculateSigmoid(svalues[5]);
 
