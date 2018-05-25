@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ERROR_BACK_PROPAGATION
 {
@@ -25,11 +26,12 @@ namespace ERROR_BACK_PROPAGATION
         bool withbias = false;
 
         List<int> _layers = new List<int>();
-        Dictionary<string, double> _weightvalues = new Dictionary<string, double>();
+        List<double> error = new List<double>();
         Random randomNumGenerator = new Random();
         Dictionary<string, double> _svalues = new Dictionary<string, double>();
         Dictionary<string, double> _uvalues = new Dictionary<string, double>();
         Dictionary<string, double> _dvalues = new Dictionary<string, double>();
+        Dictionary<string, double> _weightvalues = new Dictionary<string, double>();
         public Form1()
         {
             InitializeComponent();
@@ -42,14 +44,61 @@ namespace ERROR_BACK_PROPAGATION
             intializeTheNetwork();
 
             //read data
-            data = readFile().Take(5).ToList();
-            double[] t = { data[0][0], data[0][1] };
-            var output = computeTheOutput(t);
-            computeDeltaValues(output, data[0][2]);
-            updateWeights(t);
+            data = readFile();
+
+            //draw the dataset
+            drawDataPoints();
+
+            for (int iter = 0; iter < 3000; iter++)
+            {
+                Shuffle(data);
+                int errorcount = 0;
+                for (int i = 0; i < data.Count; i++)
+                {
+                    double[] t = { data[i][0], data[i][1] };
+                    var output = computeTheOutput(t);
+                    computeDeltaValues(output, data[i][2]);
+                    updateWeights(t);
+
+                    errorcount += (int)Math.Abs(data[i][2] - (Math.Abs(output) >= 0.5 ? 1 : 0));
+                }
+                error.Add(errorcount);
+            }
+
+            drawErrorChart();
 
             previousCode();
 
+            using (StreamWriter sw = File.CreateText("list.csv"))
+            {
+                for (int i = 0; i < error.Count; i++)
+                {
+                    sw.WriteLine(error[i]);
+                }
+            }
+
+
+
+        }
+
+        private void drawErrorChart()
+        {
+            
+            chart_error.Series["Series1"].ChartType = SeriesChartType.Line;
+
+            List<double> x_col_c1 = new List<double>();
+            List<double> y_col_c1 = new List<double>();
+
+            for (int i = 0; i < error.Count; i++)
+            {
+                    y_col_c1.Add(error[i]);
+                    x_col_c1.Add(i);                
+            }
+
+            chart_error.Series["Series1"].Points.DataBindXY(x_col_c1, y_col_c1);
+            chart_error.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+            chart_error.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+            Refresh();
         }
 
         public void intializeTheNetwork()
@@ -63,8 +112,8 @@ namespace ERROR_BACK_PROPAGATION
                     for (int destination = 1; destination < _layers[i + 1] + 1; destination++)
                     {
                         double rand = randomNumGenerator.Next(-10, 10);
-                        //_weightvalues.Add(i+1 + "|" + destination + "" + source, rand / 10);
-                        _weightvalues.Add(i + 1 + "|" + destination + "" + source, 1);
+                        _weightvalues.Add(i + 1 + "|" + destination + "" + source, rand / 10);
+                        //_weightvalues.Add(i + 1 + "|" + destination + "" + source, 1);
                     }
                 }
             }
@@ -96,7 +145,7 @@ namespace ERROR_BACK_PROPAGATION
                         {
                             c += _weightvalues[i + "|" + j + "" + k] * x1[k - 1];
                         }
-                        _svalues[i + 1 + "" + j] = c;
+                        _svalues[i + 1 + "" + j] = c + (withbias ? 1 : 0);
                         _uvalues[i + 1 + "" + j] = calculateSigmoid(c);
                     }
                     else
@@ -106,7 +155,7 @@ namespace ERROR_BACK_PROPAGATION
                         {
                             c += _weightvalues[i + "|" + j + "" + k] * _uvalues[i + "" + k];
                         }
-                        _svalues[i + 1 + "" + j] = c;
+                        _svalues[i + 1 + "" + j] = c + (withbias ? 1 : 0);
                         _uvalues[i + 1 + "" + j] = calculateSigmoid(c);
                     }
                 }
@@ -144,7 +193,7 @@ namespace ERROR_BACK_PROPAGATION
                     {
                         if (i == 0)
                         {
-                            double newWeight = _weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * x[source-1];
+                            double newWeight = _weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * x[source - 1];
                             _weightvalues[(i + 1) + "|" + destination + "" + source] = newWeight;
                         }
                         else
@@ -163,6 +212,38 @@ namespace ERROR_BACK_PROPAGATION
                 //weightValues[2] = weightValues[2] + learningRate * deltavalues[3] * x2;
                 //weightValues[3] = weightValues[3] + learningRate * deltavalues[4] * x2;
             }
+        }
+
+        public void drawDataPoints()
+        {
+            chart1.Series.Add("Series2");
+            chart1.Series.Add("Series3");
+            chart1.Series["Series1"].ChartType = SeriesChartType.Point;
+            chart1.Series["Series2"].ChartType = SeriesChartType.Point;
+            chart1.Series["Series3"].ChartType = SeriesChartType.Point;
+
+            List<double> x_col_c1 = new List<double>();
+            List<double> y_col_c1 = new List<double>();
+            List<double> x_col_c2 = new List<double>();
+            List<double> y_col_c2 = new List<double>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (data[i][2] == 0)
+                {
+                    x_col_c1.Add(data[i][0]);
+                    y_col_c1.Add(data[i][1]);
+                }
+                else if (data[i][2] == 1)
+                {
+                    x_col_c2.Add(data[i][0]);
+                    y_col_c2.Add(data[i][1]);
+                }
+            }
+
+            chart1.Series["Series1"].Points.DataBindXY(x_col_c1, y_col_c1);
+            chart1.Series["Series2"].Points.DataBindXY(x_col_c2, y_col_c2);
+            Refresh();
         }
 
         public void previousCode()
@@ -196,9 +277,9 @@ namespace ERROR_BACK_PROPAGATION
                 weightValues[i] = 1;
             }
 
-            data = readFile().Take(5).ToList();
+            data = readFile();
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < data.Count; i++)
             {
                 double output = calculateTheOutput(data[i][0], data[i][1]);
                 calculateDeltaValues(data[i][2], output, data[i][0], data[i][1]);
@@ -262,20 +343,68 @@ namespace ERROR_BACK_PROPAGATION
                 }
             }
 
-            return listA;
+            List<double[]> list50 = new List<double[]>();
+            // take only 25 for each group
+            for (int i = 0; i < listA.Count; i++)
+            {
+                if (list50.Count == 25) break;
+                if (listA[i][2] == 1) list50.Add(listA[i]);
+            }
+            for (int i = 0; i < listA.Count; i++)
+            {
+                if (list50.Count == 50) break;
+                if (listA[i][2] == 0) list50.Add(listA[i]);
+            }
+
+            Shuffle(list50);
+            Shuffle(list50);
+
+            return list50;
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int count = 0;
-            for (int i = 0; i < data.Count; i++)
-            {
-                double output = calculateTheOutput(data[i][0], data[i][1]);
-                if (data[i][2] == (output > 0.5 ? 1 : 0)) count++;
-            }
+            //int count = 0;
+            //for (int i = 0; i < data.Count; i++)
+            //{
+            //    double output = calculateTheOutput(data[i][0], data[i][1]);
+            //    if (data[i][2] == (output > 0.5 ? 1 : 0)) count++;
+            //}
 
-            System.Diagnostics.Debug.Print("Count =>" + count);
+            //System.Diagnostics.Debug.Print("Count =>" + count);
+            try
+            {
+                double[] val = { double.Parse(txt_x1.Text), double.Parse(txt_x2.Text) };
+                double output = computeTheOutput(val);
+
+                lbl_output.Text = output + "";
+
+                List<double> x_col_c1 = new List<double>();
+                List<double> y_col_c1 = new List<double>();
+                x_col_c1.Add(double.Parse(txt_x1.Text));
+                y_col_c1.Add(double.Parse(txt_x2.Text));
+                chart1.Series["Series3"].Points.DataBindXY(x_col_c1, y_col_c1);
+                Refresh();
+            }
+            catch (Exception ee)
+            {
+                lbl_output.Text = "Please Check your input";
+            }
+        }
+
+        public static void Shuffle<T>(IList<T> list)
+        {
+            Random rng = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
         }
     }
 }
