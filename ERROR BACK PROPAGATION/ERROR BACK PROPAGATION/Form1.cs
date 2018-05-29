@@ -375,7 +375,7 @@ namespace ERROR_BACK_PROPAGATION
             return 1 / (1 + Math.Pow(Math.E, -s));
         }
 
-        public static List<double[]> readFile(string fileLocation = "data.csv")
+        public static List<double[]> readFile(string fileLocation = "data2.csv")
         {
 
             List<double[]> listA = new List<double[]>();
