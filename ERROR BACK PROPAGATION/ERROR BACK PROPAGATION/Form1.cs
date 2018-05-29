@@ -23,7 +23,7 @@ namespace ERROR_BACK_PROPAGATION
         int totalNodeCount = 0;
         double learningRate = 0.01;
         List<double[]> data;
-        bool withbias = true;
+        bool withbias = false;
 
         List<int> _layers = new List<int>();
         List<double> error = new List<double>();

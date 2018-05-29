@@ -92,7 +92,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chart1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 22);
+            this.groupBox1.Location = new System.Drawing.Point(11, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(451, 421);
             this.groupBox1.TabIndex = 3;
@@ -157,7 +157,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txt_x2);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 449);
+            this.groupBox2.Location = new System.Drawing.Point(11, 439);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(451, 56);
             this.groupBox2.TabIndex = 10;
@@ -177,9 +177,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.chart_error);
-            this.groupBox4.Location = new System.Drawing.Point(475, 22);
+            this.groupBox4.Location = new System.Drawing.Point(474, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(411, 225);
+            this.groupBox4.Size = new System.Drawing.Size(427, 242);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Error Plot";
@@ -197,16 +197,16 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chart_error.Series.Add(series2);
-            this.chart_error.Size = new System.Drawing.Size(399, 206);
+            this.chart_error.Size = new System.Drawing.Size(415, 223);
             this.chart_error.TabIndex = 12;
             this.chart_error.Text = "chart2";
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.test_cart);
-            this.groupBox5.Location = new System.Drawing.Point(475, 253);
+            this.groupBox5.Location = new System.Drawing.Point(474, 260);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(411, 225);
+            this.groupBox5.Size = new System.Drawing.Size(427, 235);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Test Data Plot";
@@ -224,7 +224,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.test_cart.Series.Add(series3);
-            this.test_cart.Size = new System.Drawing.Size(399, 206);
+            this.test_cart.Size = new System.Drawing.Size(415, 214);
             this.test_cart.TabIndex = 12;
             this.test_cart.Text = "chart2";
             // 
@@ -232,7 +232,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 566);
+            this.BackColor = System.Drawing.SystemColors.Menu;
+            this.ClientSize = new System.Drawing.Size(912, 509);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
