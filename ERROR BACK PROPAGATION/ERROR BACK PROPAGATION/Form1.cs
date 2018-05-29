@@ -23,7 +23,7 @@ namespace ERROR_BACK_PROPAGATION
         int totalNodeCount = 0;
         double learningRate = 0.01;
         List<double[]> data;
-        bool withbias = false;
+        bool withbias = true;
 
         List<int> _layers = new List<int>();
         List<double> error = new List<double>();
@@ -107,7 +107,7 @@ namespace ERROR_BACK_PROPAGATION
             //assign random values for the weight values
             for (int i = 0; i < _layers.Count - 1; i++)
             {
-                for (int source = 1; source < _layers[i] + 1; source++)
+                for (int source = (withbias ? 0 : 1); source < _layers[i] + 1; source++)
                 {
                     for (int destination = 1; destination < _layers[i + 1] + 1; destination++)
                     {
@@ -134,26 +134,28 @@ namespace ERROR_BACK_PROPAGATION
         public double computeTheOutput(double[] x1)
         {
             int sum = 0;
-            for (int i = 1; i < _layers.Count; i++)
+            for (int i = 1; i < _layers.Count; i++) // layer no index starts from 0, 1 implies layer 2
             {
-                for (int j = 1; j < _layers[i] + 1; j++)
+                for (int j = 1; j < _layers[i] + 1; j++) // destination id
                 {
                     if (i == 1)
                     {
                         double c = 0;
-                        for (int k = 1; k < _layers[i - 1] + 1; k++)
+                        for (int k = (withbias ? 0 : 1); k < _layers[i - 1] + 1; k++) // source id
                         {
-                            c += _weightvalues[i + "|" + j + "" + k] * x1[k - 1];
+                            if(k==0) c += _weightvalues[i + "|" + j + "" + k] * 1;
+                            else c += _weightvalues[i + "|" + j + "" + k] * x1[k - 1];
                         }
-                        _svalues[i + 1 + "" + j] = c + (withbias ? 1 : 0);
+                        _svalues[i + 1 + "" + j] = c ;
                         _uvalues[i + 1 + "" + j] = calculateSigmoid(c);
                     }
                     else
                     {
                         double c = 0;
-                        for (int k = 1; k < _layers[i - 1] + 1; k++)
+                        for (int k = (withbias ? 0 : 1); k < _layers[i - 1] + 1; k++)
                         {
-                            c += _weightvalues[i + "|" + j + "" + k] * _uvalues[i + "" + k];
+                            if (k == 0) c += _weightvalues[i + "|" + j + "" + k] * 1;
+                            else c += _weightvalues[i + "|" + j + "" + k] * _uvalues[i + "" + k];
                         }
                         _svalues[i + 1 + "" + j] = c + (withbias ? 1 : 0);
                         _uvalues[i + 1 + "" + j] = calculateSigmoid(c);
@@ -187,30 +189,25 @@ namespace ERROR_BACK_PROPAGATION
         {
             for (int i = _layers.Count - 2; i >= 0; i--)
             {
-                for (int source = 1; source < _layers[i] + 1; source++)
+                for (int source = (withbias ? 0 : 1); source < _layers[i] + 1; source++)
                 {
                     for (int destination = 1; destination < _layers[i + 1] + 1; destination++)
                     {
                         if (i == 0)
                         {
-                            double newWeight = _weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * x[source - 1];
+                            double newWeight = (source==0?(_weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * 1) :
+                                (_weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * x[source - 1]));
                             _weightvalues[(i + 1) + "|" + destination + "" + source] = newWeight;
                         }
                         else
                         {
-                            double newWeight = _weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * _uvalues[(i + 1) + "" + source];
+                            double newWeight = (source == 0 ? (_weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * 1):
+                                (_weightvalues[i + 1 + "|" + destination + "" + source] + learningRate * _dvalues[(i + 2) + "" + destination] * _uvalues[(i + 1) + "" + source]));
                             _weightvalues[(i + 1) + "|" + destination + "" + source] = newWeight;
                         }
                     }
                 }
-
-                //weightValues[5] = weightValues[5] + learningRate * deltavalues[5] * uvalues[4];
-                //weightValues[4] = weightValues[4] + learningRate * deltavalues[4] * uvalues[3];
-
-                //weightValues[0] = weightValues[0] + learningRate * deltavalues[3] * x1;
-                //weightValues[1] = weightValues[1] + learningRate * deltavalues[4] * x1;
-                //weightValues[2] = weightValues[2] + learningRate * deltavalues[3] * x2;
-                //weightValues[3] = weightValues[3] + learningRate * deltavalues[4] * x2;
+                
             }
         }
 
@@ -246,6 +243,8 @@ namespace ERROR_BACK_PROPAGATION
             Refresh();
         }
 
+        //=======================================================================================
+        #region previous code
         public void previousCode()
         {
 
@@ -406,5 +405,6 @@ namespace ERROR_BACK_PROPAGATION
                 list[n] = value;
             }
         }
+        #endregion
     }
 }
