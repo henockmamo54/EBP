@@ -34,6 +34,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btn_calcOutput = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,19 +50,23 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chart_error = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.test_cart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_error)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.test_cart)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_calcOutput
             // 
-            this.btn_calcOutput.Location = new System.Drawing.Point(83, 109);
+            this.btn_calcOutput.Location = new System.Drawing.Point(192, 17);
             this.btn_calcOutput.Name = "btn_calcOutput";
-            this.btn_calcOutput.Size = new System.Drawing.Size(75, 23);
+            this.btn_calcOutput.Size = new System.Drawing.Size(47, 27);
             this.btn_calcOutput.TabIndex = 0;
             this.btn_calcOutput.Text = "output";
             this.btn_calcOutput.UseVisualStyleBackColor = true;
@@ -95,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 40);
+            this.label1.Location = new System.Drawing.Point(1, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 4;
@@ -104,7 +111,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 77);
+            this.label2.Location = new System.Drawing.Point(95, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 5;
@@ -112,22 +119,22 @@
             // 
             // txt_x1
             // 
-            this.txt_x1.Location = new System.Drawing.Point(83, 37);
+            this.txt_x1.Location = new System.Drawing.Point(27, 19);
             this.txt_x1.Name = "txt_x1";
-            this.txt_x1.Size = new System.Drawing.Size(100, 20);
+            this.txt_x1.Size = new System.Drawing.Size(62, 20);
             this.txt_x1.TabIndex = 6;
             // 
             // txt_x2
             // 
-            this.txt_x2.Location = new System.Drawing.Point(83, 74);
+            this.txt_x2.Location = new System.Drawing.Point(121, 20);
             this.txt_x2.Name = "txt_x2";
-            this.txt_x2.Size = new System.Drawing.Size(100, 20);
+            this.txt_x2.Size = new System.Drawing.Size(58, 20);
             this.txt_x2.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 16);
+            this.label3.Location = new System.Drawing.Point(10, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 8;
@@ -137,7 +144,7 @@
             // 
             this.lbl_output.AutoSize = true;
             this.lbl_output.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_output.Location = new System.Drawing.Point(90, 16);
+            this.lbl_output.Location = new System.Drawing.Point(62, 16);
             this.lbl_output.Name = "lbl_output";
             this.lbl_output.Size = new System.Drawing.Size(0, 13);
             this.lbl_output.TabIndex = 9;
@@ -150,9 +157,9 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txt_x2);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(469, 253);
+            this.groupBox2.Location = new System.Drawing.Point(12, 449);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(237, 184);
+            this.groupBox2.Size = new System.Drawing.Size(451, 56);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test";
@@ -161,9 +168,9 @@
             // 
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.lbl_output);
-            this.groupBox3.Location = new System.Drawing.Point(6, 138);
+            this.groupBox3.Location = new System.Drawing.Point(255, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(228, 42);
+            this.groupBox3.Size = new System.Drawing.Size(190, 43);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             // 
@@ -194,11 +201,39 @@
             this.chart_error.TabIndex = 12;
             this.chart_error.Text = "chart2";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.test_cart);
+            this.groupBox5.Location = new System.Drawing.Point(475, 253);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(411, 225);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Test Data Plot";
+            // 
+            // test_cart
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.test_cart.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.test_cart.Legends.Add(legend3);
+            this.test_cart.Location = new System.Drawing.Point(6, 13);
+            this.test_cart.Name = "test_cart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.test_cart.Series.Add(series3);
+            this.test_cart.Size = new System.Drawing.Size(399, 206);
+            this.test_cart.TabIndex = 12;
+            this.test_cart.Text = "chart2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 474);
+            this.ClientSize = new System.Drawing.Size(931, 566);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -212,6 +247,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_error)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.test_cart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,6 +268,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_error;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart test_cart;
     }
 }
 

@@ -53,6 +53,7 @@ namespace ERROR_BACK_PROPAGATION
             {
                 Shuffle(data);
                 int errorcount = 0;
+                double errorvalue = 0;
                 for (int i = 0; i < data.Count; i++)
                 {
                     double[] t = { data[i][0], data[i][1] };
@@ -60,14 +61,16 @@ namespace ERROR_BACK_PROPAGATION
                     computeDeltaValues(output, data[i][2]);
                     updateWeights(t);
 
+                    errorvalue += Math.Abs(data[i][2] - output);
                     errorcount += (int)Math.Abs(data[i][2] - (Math.Abs(output) >= 0.5 ? 1 : 0));
                 }
-                error.Add(errorcount);
+                //error.Add(errorcount);
+                error.Add(errorvalue / data.Count);
             }
 
             drawErrorChart();
-
-            previousCode();
+            generateTestGridData();
+            //previousCode();
 
             using (StreamWriter sw = File.CreateText("list.csv"))
             {
@@ -243,6 +246,51 @@ namespace ERROR_BACK_PROPAGATION
             Refresh();
         }
 
+        public void generateTestGridData() {
+            List<double[]> testdata = new List<double[]>();
+            for (double i = 0.0; i < 1.1; i=i+0.01) {
+                for (double j = 0.0; j < 1.1; j = j + 0.01) {
+                    double[] mydata = { i, j, 0 };
+                    testdata.Add(mydata);
+                }
+            }
+
+            for(int i = 0; i < testdata.Count; i++)
+            {
+                double[] t = { testdata[i][0], testdata[i][1] };
+                testdata[i][2] = computeTheOutput(t) >0.5?1:0;
+            }
+
+
+            test_cart.Series.Add("Series2");
+            test_cart.Series.Add("Series3");
+            test_cart.Series["Series1"].ChartType = SeriesChartType.Point;
+            test_cart.Series["Series2"].ChartType = SeriesChartType.Point;
+
+            List<double> x_col_c1 = new List<double>();
+            List<double> y_col_c1 = new List<double>();
+            List<double> x_col_c2 = new List<double>();
+            List<double> y_col_c2 = new List<double>();
+
+            for (int i = 0; i < testdata.Count; i++)
+            {
+                if (testdata[i][2] == 0)
+                {
+                    x_col_c1.Add(testdata[i][0]);
+                    y_col_c1.Add(testdata[i][1]);
+                }
+                else if (testdata[i][2] == 1)
+                {
+                    x_col_c2.Add(testdata[i][0]);
+                    y_col_c2.Add(testdata[i][1]);
+                }
+            }
+
+            test_cart.Series["Series1"].Points.DataBindXY(x_col_c1, y_col_c1);
+            test_cart.Series["Series2"].Points.DataBindXY(x_col_c2, y_col_c2);
+            Refresh();
+
+        }
         //=======================================================================================
         #region previous code
         public void previousCode()
