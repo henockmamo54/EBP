@@ -116,7 +116,7 @@ namespace ERROR_BACK_PROPAGATION
                     {
                         double rand = randomNumGenerator.Next(-10, 10);
                         _weightvalues.Add(i + 1 + "|" + destination + "" + source, rand / 10);
-                        //_weightvalues.Add(i + 1 + "|" + destination + "" + source, 1);
+                        //_weightvalues.Add(i + 1 + "|" + destination + "" + source, 0.1);
                     }
                 }
             }
@@ -248,8 +248,8 @@ namespace ERROR_BACK_PROPAGATION
 
         public void generateTestGridData() {
             List<double[]> testdata = new List<double[]>();
-            for (double i = 0.0; i < 1.1; i=i+0.01) {
-                for (double j = 0.0; j < 1.1; j = j + 0.01) {
+            for (double i =-5; i < 5.1; i=i+0.5) {
+                for (double j = -5.0; j < 31.1; j = j + 0.5) {
                     double[] mydata = { i, j, 0 };
                     testdata.Add(mydata);
                 }
@@ -375,7 +375,7 @@ namespace ERROR_BACK_PROPAGATION
             return 1 / (1 + Math.Pow(Math.E, -s));
         }
 
-        public static List<double[]> readFile(string fileLocation = "data.csv")
+        public static List<double[]> readFile(string fileLocation = "data6.csv")
         {
 
             List<double[]> listA = new List<double[]>();
@@ -406,7 +406,7 @@ namespace ERROR_BACK_PROPAGATION
             Shuffle(list50);
             Shuffle(list50);
 
-            return list50;
+            return listA;
 
         }
 
