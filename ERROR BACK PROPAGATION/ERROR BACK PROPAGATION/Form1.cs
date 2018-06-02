@@ -255,7 +255,15 @@ namespace ERROR_BACK_PROPAGATION
                 }
             }
 
-            for(int i = 0; i < testdata.Count; i++)
+            using (StreamWriter sw = File.CreateText("GridTestData.txt"))
+            {
+                for (int i = 0; i < testdata.Count; i++)
+                {
+                    sw.WriteLine(testdata[i][0] + "," + testdata[i][1] );
+                }
+            }
+
+            for (int i = 0; i < testdata.Count; i++)
             {
                 double[] t = { testdata[i][0], testdata[i][1] };
                 testdata[i][2] = computeTheOutput(t) >0.5?1:0;
@@ -405,6 +413,39 @@ namespace ERROR_BACK_PROPAGATION
 
             Shuffle(list50);
             Shuffle(list50);
+
+            using (StreamWriter sw = File.CreateText("training.txt"))
+            {
+                for (int i = 0; i < list50.Count; i++)
+                {
+                    sw.WriteLine(list50[i][0] +","+ list50[i][1]+"," + list50[i][2]);
+                }
+            }
+
+
+            //==============================================
+            List<double[]> listp = new List<double[]>();
+            // take only 25 for each group
+            for (int i = 50; i < listA.Count; i++)
+            {
+                if (listp.Count == 25) break;
+                if (listA[i][2] == 1) listp.Add(listA[i]);
+            }
+            for (int i = 0; i < listA.Count; i++)
+            {
+                if (listp.Count == 50) break;
+                if (listA[i][2] == 0) listp.Add(listA[i]);
+            }
+
+            Shuffle(listp);
+            using (StreamWriter sw = File.CreateText("test.txt"))
+            {
+                for (int i = 0; i < listp.Count; i++)
+                {
+                    sw.WriteLine(listp[i][0] + "," + listp[i][1] + "," + listp[i][2]);
+                }
+            }
+
 
             return list50;
 
